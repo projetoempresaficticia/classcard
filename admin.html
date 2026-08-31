@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carteirinha Prepara — Admin</title>
+  <link rel="stylesheet" href="web/estilos.css" />
+</head>
+<body>
+  <header>
+    <strong>Carteirinha Prepara — Admin</strong>
+    <a href="index.html">← Cartão</a>
+  </header>
+
+  <main>
+    <div id="area-login">
+      <form id="form-login">
+        <h2>Entrar como professor/admin</h2>
+        <label for="email">Email de login</label>
+        <input id="email" type="email" required />
+        <label for="senha">Senha</label>
+        <input id="senha" type="password" required />
+        <button type="submit">Entrar</button>
+        <p class="msg" id="msg-login"></p>
+      </form>
+    </div>
+
+    <div id="area-admin" hidden>
+      <form id="form-pessoa">
+        <h2>Registar pessoa</h2>
+        <p style="font-size:0.85rem;color:#555">
+          O login (Supabase Auth) tem de ser criado antes, no Dashboard do
+          Supabase → Authentication → Add user. Cole aqui o UID gerado.
+        </p>
+        <label>UID do login (Supabase Auth)</label>
+        <input id="p-uid" required placeholder="00000000-0000-0000-0000-000000000000" />
+        <label>Nome</label>
+        <input id="p-nome" required />
+        <label>Email de login</label>
+        <input id="p-email-login" type="email" required />
+        <label>Email interno (Correio)</label>
+        <input id="p-email-interno" type="email" />
+        <label>Papel</label>
+        <select id="p-papel">
+          <option value="aluno">aluno</option>
+          <option value="professor">professor</option>
+          <option value="funcionario-orgao">funcionário-órgão</option>
+        </select>
+        <button type="submit">Registar pessoa</button>
+        <p class="msg" id="msg-pessoa"></p>
+      </form>
+
+      <form id="form-empresa">
+        <h2>Registar empresa</h2>
+        <label>Nome</label>
+        <input id="e-nome" required />
+        <label>Email da empresa</label>
+        <input id="e-email" type="email" />
+        <label>Região</label>
+        <input id="e-regiao" />
+        <label>Setor</label>
+        <input id="e-setor" />
+        <button type="submit">Registar empresa</button>
+        <p class="msg" id="msg-empresa"></p>
+      </form>
+
+      <form id="form-vincular">
+        <h2>Vincular pessoa a empresa</h2>
+        <label>Cédula da pessoa (PP-...)</label>
+        <input id="v-pessoa" required />
+        <label>Cédula da empresa (EP-...)</label>
+        <input id="v-empresa" required />
+        <button type="submit">Vincular</button>
+        <p class="msg" id="msg-vincular"></p>
+      </form>
+
+      <form id="form-buscar">
+        <h2>Buscar por cédula</h2>
+        <label>Cédula (PP-... ou EP-...)</label>
+        <input id="b-cedula" required />
+        <button type="submit">Buscar</button>
+        <p class="msg" id="msg-buscar"></p>
+        <table id="tabela-busca" hidden>
+          <tbody></tbody>
+        </table>
+      </form>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://projetoempresaficticia.github.io/pp-base/web/comum.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

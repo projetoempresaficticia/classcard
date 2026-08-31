@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carteirinha Prepara</title>
+  <link rel="stylesheet" href="web/estilos.css" />
+</head>
+<body>
+  <header>
+    <strong>Carteirinha Prepara</strong>
+    <a href="admin.html">Admin</a>
+  </header>
+
+  <main>
+    <div id="area-login">
+      <form id="form-login">
+        <h2>Entrar</h2>
+        <label for="email">Email de login</label>
+        <input id="email" type="email" required />
+        <label for="senha">Senha</label>
+        <input id="senha" type="password" required />
+        <button type="submit">Entrar</button>
+        <p class="msg" id="msg-login"></p>
+      </form>
+    </div>
+
+    <div id="area-cartao" hidden>
+      <div class="cartao">
+        <div class="cedula" id="c-cedula">—</div>
+        <div class="nome" id="c-nome">—</div>
+        <div class="linha">
+          <span id="c-empresa">—</span>
+          <span id="c-papel">—</span>
+        </div>
+        <div class="linha">
+          <span class="estado-badge" id="c-estado">—</span>
+        </div>
+      </div>
+      <p><button id="btn-sair" type="button">Sair</button></p>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://projetoempresaficticia.github.io/pp-base/web/comum.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

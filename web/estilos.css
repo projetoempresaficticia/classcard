@@ -1,0 +1,112 @@
+/* pp-identidade — paleta oficial Prepara Portugal (distinta da do Banco),
+   conforme fixado no SKILL.md, §7. Tons de azul = confiança/estabilidade. */
+
+:root {
+  --id-azul-escuro: #1A1C31;
+  --id-azul: #2D6EB4;
+  --id-azul-medio: #243261;
+  --id-azul-claro: #80BADB;
+  --id-azul-forte: #0E4D96;
+  --id-cinza: #EDEDED;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--id-cinza);
+  color: var(--id-azul-escuro);
+}
+
+header {
+  background: var(--id-azul-escuro);
+  color: #fff;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header a { color: var(--id-azul-claro); text-decoration: none; }
+
+main {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.cartao {
+  background: linear-gradient(135deg, var(--id-azul-forte), var(--id-azul-medio));
+  color: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 24px rgba(26, 28, 49, 0.25);
+}
+
+.cartao .cedula {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.cartao .nome { font-size: 1.15rem; margin-top: 0.25rem; }
+
+.cartao .linha {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--id-azul-claro);
+}
+
+.estado-badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.estado-ativa { background: #d9f2df; color: #1c7a3a; }
+.estado-suspensa { background: #fde3cf; color: #a5480a; }
+.estado-falida { background: #f7d3d3; color: #9c1c1c; }
+
+form {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(26, 28, 49, 0.08);
+}
+
+form h2 { margin-top: 0; color: var(--id-azul-forte); font-size: 1.05rem; }
+
+label { display: block; font-size: 0.85rem; margin: 0.6rem 0 0.2rem; }
+input, select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+button {
+  margin-top: 1rem;
+  background: var(--id-azul);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+button:hover { background: var(--id-azul-forte); }
+
+.msg { margin-top: 0.75rem; font-size: 0.9rem; }
+.msg.erro { color: #a5240a; }
+.msg.sucesso { color: #1c7a3a; }
+
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; }
+th, td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--id-cinza); font-size: 0.9rem; }
+th { background: var(--id-azul-medio); color: #fff; }
