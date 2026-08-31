@@ -6,7 +6,7 @@
   <title>Carteirinha Prepara</title>
   <link rel="stylesheet" href="web/estilos.css" />
 </head>
-<body>
+<body class="tema-cartao">
   <header>
     <strong>Carteirinha Prepara</strong>
     <a href="admin.html">Admin</a>
@@ -27,21 +27,47 @@
 
     <div id="area-cartao" hidden>
       <div class="cartao">
-        <div class="cedula" id="c-cedula">—</div>
-        <div class="nome" id="c-nome">—</div>
-        <div class="linha">
-          <span id="c-empresa">—</span>
-          <span id="c-papel">—</span>
+        <div class="cartao-topo"></div>
+        <div class="cartao-corpo">
+          <div class="cartao-identidade">
+            <div class="cartao-avatar" id="c-avatar">—</div>
+            <div>
+              <div class="nome" id="c-nome">—</div>
+              <div class="cedula" id="c-cedula">—</div>
+            </div>
+          </div>
+
+          <div class="cartao-divisoria"></div>
+
+          <div class="cartao-grade">
+            <div class="cartao-campo">
+              <div class="rotulo">Empresa</div>
+              <div class="valor" id="c-empresa">—</div>
+            </div>
+            <div class="cartao-campo">
+              <div class="rotulo">Papel</div>
+              <div class="valor" id="c-papel">—</div>
+            </div>
+            <div class="cartao-campo">
+              <div class="rotulo">Estado</div>
+              <div class="valor"><span class="estado-badge" id="c-estado">—</span></div>
+            </div>
+          </div>
+
+          <div class="cartao-divisoria"></div>
         </div>
-        <div class="linha">
-          <span class="estado-badge" id="c-estado">—</span>
+
+        <div class="cartao-rodape">
+          <div id="c-qr" class="qr-caixa"></div>
+          <div class="legenda">Escaneie<br />para verificar</div>
         </div>
       </div>
-      <p><button id="btn-sair" type="button">Sair</button></p>
+      <button class="botao-pilula" id="btn-sair" type="button">Sair</button>
     </div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <script src="https://projetoempresaficticia.github.io/pp-base/web/comum.js"></script>
   <script src="app.js"></script>
 </body>

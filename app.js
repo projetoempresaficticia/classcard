@@ -41,9 +41,26 @@ async function carregarCartao() {
   document.getElementById('c-empresa').textContent = empresaNome;
   document.getElementById('c-papel').textContent = pessoa.papel;
 
+  const iniciais = pessoa.nome
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((p) => p[0].toUpperCase())
+    .join('');
+  document.getElementById('c-avatar').textContent = iniciais || '?';
+
   const badge = document.getElementById('c-estado');
   badge.textContent = pessoa.estado;
   badge.className = 'estado-badge estado-' + pessoa.estado;
+
+  document.getElementById('c-qr').innerHTML = '';
+  new QRCode(document.getElementById('c-qr'), {
+    text: pessoa.cedula,
+    width: 72,
+    height: 72,
+    colorDark: '#1A1C31',
+    colorLight: '#FFFFFF',
+  });
 
   areaLogin.hidden = true;
   areaCartao.hidden = false;

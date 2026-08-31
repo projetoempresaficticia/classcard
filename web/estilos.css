@@ -17,48 +17,152 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   background: var(--id-cinza);
   color: var(--id-azul-escuro);
+  min-height: 100vh;
+}
+
+/* Página do cartão: fundo azul-marinho cheio, como a referência de "digital
+   passport" — o cartão claro flutua por cima. */
+body.tema-cartao {
+  background: radial-gradient(circle at 30% 0%, #232750 0%, var(--id-azul-escuro) 55%);
+  color: #fff;
 }
 
 header {
-  background: var(--id-azul-escuro);
+  background: transparent;
   color: #fff;
-  padding: 1rem 1.5rem;
+  padding: 1.25rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+body:not(.tema-cartao) header { background: var(--id-azul-escuro); }
 
 header a { color: var(--id-azul-claro); text-decoration: none; }
 
 main {
-  max-width: 720px;
-  margin: 2rem auto;
+  max-width: 480px;
+  margin: 1.5rem auto 3rem;
   padding: 0 1rem;
 }
+body:not(.tema-cartao) main { max-width: 720px; }
+
+/* ---- Carteirinha ---- */
 
 .cartao {
-  background: linear-gradient(135deg, var(--id-azul-forte), var(--id-azul-medio));
+  background: #fff;
+  color: var(--id-azul-escuro);
+  border-radius: 20px;
+  box-shadow: 0 20px 45px rgba(10, 12, 30, 0.45);
+  overflow: hidden;
+}
+
+.cartao-topo {
+  height: 6px;
+  background: linear-gradient(90deg, var(--id-azul-forte), var(--id-azul), var(--id-azul-claro));
+}
+
+.cartao-corpo { padding: 1.5rem 1.5rem 1rem; }
+
+.cartao-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--id-azul-forte), var(--id-azul));
   color: #fff;
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 8px 24px rgba(26, 28, 49, 0.25);
-}
-
-.cartao .cedula {
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-}
-
-.cartao .nome { font-size: 1.15rem; margin-top: 0.25rem; }
-
-.cartao .linha {
   display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: var(--id-azul-claro);
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
 }
+
+.cartao-identidade {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cartao .nome { font-size: 1.05rem; font-weight: 600; }
+.cartao .cedula {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--id-azul-forte);
+  margin-top: 0.15rem;
+}
+
+/* divisória tipo "ticket", com entalhes nas bordas */
+.cartao-divisoria {
+  position: relative;
+  border-top: 2px dashed var(--id-cinza);
+  margin: 1.1rem 0;
+}
+.cartao-divisoria::before,
+.cartao-divisoria::after {
+  content: "";
+  position: absolute;
+  top: -11px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--id-azul-escuro);
+}
+body:not(.tema-cartao) .cartao-divisoria::before,
+body:not(.tema-cartao) .cartao-divisoria::after {
+  background: var(--id-cinza);
+}
+.cartao-divisoria::before { left: -31px; }
+.cartao-divisoria::after { right: -31px; }
+
+.cartao-grade {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+}
+.cartao-campo .rotulo {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8a8fa3;
+}
+.cartao-campo .valor { font-size: 0.9rem; margin-top: 0.15rem; }
+
+.cartao-rodape {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1.5rem 1.5rem;
+}
+.cartao-rodape .qr-caixa {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.cartao-rodape .qr-caixa img { display: block; }
+.cartao-rodape .legenda {
+  font-size: 0.7rem;
+  color: #8a8fa3;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.botao-pilula {
+  display: block;
+  width: 100%;
+  margin-top: 1.5rem;
+  background: #fff;
+  color: var(--id-azul-escuro);
+  border: none;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+.botao-pilula:hover { background: var(--id-cinza); }
 
 .estado-badge {
   display: inline-block;
