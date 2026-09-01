@@ -22,7 +22,7 @@ async function carregarCartao() {
     .single();
 
   if (error || !pessoa) {
-    mostrarErro(msgLogin, 'Sem ficha na Carteirinha para este login. Fale com o professor/admin.');
+    mostrarErro(msgLogin, 'Sem ficha no ClassCard para este login. Fale com o professor/admin.');
     return;
   }
 

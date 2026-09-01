@@ -1,6 +1,6 @@
 # pp-identidade
 
-Carteirinha Prepara — identidade de pessoas e empresas (Prepara Portugal)
+ClassCard (Carteirinha Prepara) — identidade de pessoas e empresas (Prepara Portugal)
 
 **Status:** RPCs de registo construídas e testadas, RLS de leitura aplicada,
 frontend (cartão + admin) publicado, professor bootstrap concluído e
