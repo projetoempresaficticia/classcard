@@ -215,13 +215,17 @@ body:not(.tema-cartao) main { max-width: 720px; }
   border: 1px solid rgba(45, 110, 180, 0.12);
 }
 .qr-caixa {
+  display: block;
   width: 88px;
   height: 88px;
   border-radius: 8px;
   overflow: hidden;
   flex-shrink: 0;
   border: 2px solid var(--id-azul-forte);
+  cursor: pointer;
 }
+.qr-caixa:hover { border-color: var(--id-azul); }
+.qr-caixa > div { width: 100%; height: 100%; }
 .qr-caixa img, .qr-caixa canvas { display: block; width: 100%; height: 100%; }
 .cartao-rodape .legenda {
   font-size: 0.68rem;

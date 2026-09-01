@@ -61,6 +61,7 @@ async function carregarCartao() {
   const urlVerificacao =
     'https://projetoempresaficticia.github.io/classcard/verificar.html?cedula=' +
     encodeURIComponent(pessoa.cedula);
+  document.getElementById('c-qr-link').href = urlVerificacao;
   document.getElementById('c-qr').innerHTML = '';
   new QRCode(document.getElementById('c-qr'), {
     text: urlVerificacao,
