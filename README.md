@@ -1,4 +1,4 @@
-# pp-identidade
+# classcard
 
 ClassCard (Carteirinha Prepara) — identidade de pessoas e empresas (Prepara Portugal)
 
@@ -10,7 +10,7 @@ testado de ponta a ponta com login real.
 Documentação completa (PRDs e decisões) em
 [prepara-portugal-docs](https://github.com/projetoempresaficticia/prepara-portugal-docs).
 
-Site: https://projetoempresaficticia.github.io/pp-identidade/
+Site: https://projetoempresaficticia.github.io/classcard/
 
 ## O que este repositório fornece
 
