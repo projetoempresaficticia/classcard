@@ -1,5 +1,5 @@
-// ClassCard — painel admin: registo de pessoas/empresas, vínculo, busca,
-// diretório (somente alunos / somente empresas).
+// ClassCard — painel admin, organizado em abas: registo de pessoas/empresas,
+// vínculo, busca, diretório (somente alunos / somente empresas).
 
 const areaLogin = document.getElementById('area-login');
 const areaAdmin = document.getElementById('area-admin');
@@ -24,6 +24,22 @@ async function verificarSessao() {
     carregarAlunos();
   }
 }
+
+// ---- Abas principais do admin (evita rolar a página inteira) ----
+
+const abasPrincipais = document.querySelectorAll('.abas-principais .aba');
+const secoesAdmin = document.querySelectorAll('.secao-admin');
+
+abasPrincipais.forEach((aba) => {
+  aba.addEventListener('click', () => {
+    abasPrincipais.forEach((a) => a.classList.remove('aba-ativa'));
+    aba.classList.add('aba-ativa');
+    const alvo = aba.dataset.secao;
+    secoesAdmin.forEach((secao) => {
+      secao.hidden = secao.id !== alvo;
+    });
+  });
+});
 
 // ---- Diretório: somente alunos / somente empresas ----
 

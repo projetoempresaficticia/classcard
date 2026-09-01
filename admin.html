@@ -26,80 +26,97 @@
     </div>
 
     <div id="area-admin" hidden>
-      <form id="form-pessoa">
-        <h2>Registar pessoa</h2>
-        <label>Nome</label>
-        <input id="p-nome" required />
-        <label>Email de login</label>
-        <input id="p-email-login" type="email" required />
-        <label>Senha inicial</label>
-        <div class="campo-com-botao">
-          <input id="p-senha" required minlength="6" placeholder="mínimo 6 caracteres" />
-          <button type="button" id="p-gerar-senha">Gerar</button>
-        </div>
-        <label>Email interno (Correio)</label>
-        <input id="p-email-interno" type="email" />
-        <label>Papel</label>
-        <select id="p-papel">
-          <option value="aluno">aluno</option>
-          <option value="professor">professor</option>
-          <option value="funcionario-orgao">funcionário-órgão</option>
-        </select>
-        <button type="submit">Registar pessoa</button>
-        <p class="msg" id="msg-pessoa"></p>
-      </form>
+      <nav class="abas abas-principais">
+        <button type="button" class="aba aba-ativa" data-secao="secao-pessoa">Registar pessoa</button>
+        <button type="button" class="aba" data-secao="secao-empresa">Registar empresa</button>
+        <button type="button" class="aba" data-secao="secao-vincular">Vincular</button>
+        <button type="button" class="aba" data-secao="secao-buscar">Buscar</button>
+        <button type="button" class="aba" data-secao="secao-diretorio">Diretório</button>
+      </nav>
 
-      <form id="form-empresa">
-        <h2>Registar empresa</h2>
-        <label>Nome</label>
-        <input id="e-nome" required />
-        <label>Email da empresa</label>
-        <input id="e-email" type="email" />
-        <label>Região</label>
-        <input id="e-regiao" />
-        <label>Setor</label>
-        <input id="e-setor" />
-        <button type="submit">Registar empresa</button>
-        <p class="msg" id="msg-empresa"></p>
-      </form>
+      <div id="secao-pessoa" class="secao-admin">
+        <form id="form-pessoa">
+          <h2>Registar pessoa</h2>
+          <label>Nome</label>
+          <input id="p-nome" required />
+          <label>Email de login</label>
+          <input id="p-email-login" type="email" required />
+          <label>Senha inicial</label>
+          <div class="campo-com-botao">
+            <input id="p-senha" required minlength="6" placeholder="mínimo 6 caracteres" />
+            <button type="button" id="p-gerar-senha">Gerar</button>
+          </div>
+          <label>Email interno (Correio)</label>
+          <input id="p-email-interno" type="email" />
+          <label>Papel</label>
+          <select id="p-papel">
+            <option value="aluno">aluno</option>
+            <option value="professor">professor</option>
+            <option value="funcionario-orgao">funcionário-órgão</option>
+          </select>
+          <button type="submit">Registar pessoa</button>
+          <p class="msg" id="msg-pessoa"></p>
+        </form>
+      </div>
 
-      <form id="form-vincular">
-        <h2>Vincular pessoa a empresa</h2>
-        <label>Cédula da pessoa (PP-...)</label>
-        <input id="v-pessoa" required />
-        <label>Cédula da empresa (EP-...)</label>
-        <input id="v-empresa" required />
-        <button type="submit">Vincular</button>
-        <p class="msg" id="msg-vincular"></p>
-      </form>
+      <div id="secao-empresa" class="secao-admin" hidden>
+        <form id="form-empresa">
+          <h2>Registar empresa</h2>
+          <label>Nome</label>
+          <input id="e-nome" required />
+          <label>Email da empresa</label>
+          <input id="e-email" type="email" />
+          <label>Região</label>
+          <input id="e-regiao" />
+          <label>Setor</label>
+          <input id="e-setor" />
+          <button type="submit">Registar empresa</button>
+          <p class="msg" id="msg-empresa"></p>
+        </form>
+      </div>
 
-      <form id="form-buscar">
-        <h2>Buscar por cédula</h2>
-        <label>Cédula (PP-... ou EP-...)</label>
-        <input id="b-cedula" required />
-        <button type="submit">Buscar</button>
-        <p class="msg" id="msg-buscar"></p>
-        <table id="tabela-busca" hidden>
-          <tbody></tbody>
-        </table>
-      </form>
+      <div id="secao-vincular" class="secao-admin" hidden>
+        <form id="form-vincular">
+          <h2>Vincular pessoa a empresa</h2>
+          <label>Cédula da pessoa (PP-...)</label>
+          <input id="v-pessoa" required />
+          <label>Cédula da empresa (EP-...)</label>
+          <input id="v-empresa" required />
+          <button type="submit">Vincular</button>
+          <p class="msg" id="msg-vincular"></p>
+        </form>
+      </div>
 
-      <section class="painel-diretorio">
-        <h2>Diretório</h2>
-        <div class="abas">
-          <button type="button" id="aba-alunos" class="aba aba-ativa">Somente alunos</button>
-          <button type="button" id="aba-empresas" class="aba">Somente empresas</button>
-        </div>
+      <div id="secao-buscar" class="secao-admin" hidden>
+        <form id="form-buscar">
+          <h2>Buscar por cédula</h2>
+          <label>Cédula (PP-... ou EP-...)</label>
+          <input id="b-cedula" required />
+          <button type="submit">Buscar</button>
+          <p class="msg" id="msg-buscar"></p>
+          <table id="tabela-busca" hidden>
+            <tbody></tbody>
+          </table>
+        </form>
+      </div>
 
-        <table id="tabela-alunos">
-          <thead>
-            <tr><th>Cédula</th><th>Nome</th><th>Empresa</th><th>Estado</th></tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+      <div id="secao-diretorio" class="secao-admin" hidden>
+        <section class="painel-diretorio">
+          <div class="abas">
+            <button type="button" id="aba-alunos" class="aba aba-ativa">Somente alunos</button>
+            <button type="button" id="aba-empresas" class="aba">Somente empresas</button>
+          </div>
 
-        <div id="lista-empresas" hidden></div>
-      </section>
+          <table id="tabela-alunos">
+            <thead>
+              <tr><th>Cédula</th><th>Nome</th><th>Empresa</th><th>Estado</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+
+          <div id="lista-empresas" hidden></div>
+        </section>
+      </div>
     </div>
   </main>
 
