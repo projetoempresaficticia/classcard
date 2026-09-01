@@ -214,3 +214,40 @@ button:hover { background: var(--id-azul-forte); }
 table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; }
 th, td { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--id-cinza); font-size: 0.9rem; }
 th { background: var(--id-azul-medio); color: #fff; }
+
+.painel-diretorio {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(26, 28, 49, 0.08);
+}
+.painel-diretorio h2 { margin-top: 0; color: var(--id-azul-forte); font-size: 1.05rem; }
+
+.abas { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+.aba {
+  margin-top: 0;
+  background: var(--id-cinza);
+  color: var(--id-azul-escuro);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+.aba:hover { background: var(--id-azul-claro); }
+.aba.aba-ativa { background: var(--id-azul); color: #fff; }
+
+.cedula-inline {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.8rem;
+  color: var(--id-azul-forte);
+}
+
+.bloco-empresa {
+  border: 1px solid var(--id-cinza);
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.75rem;
+}
+.bloco-empresa-topo { display: flex; align-items: center; gap: 0.6rem; }
+.bloco-empresa-meta { font-size: 0.8rem; color: #777; margin-top: 0.2rem; }
+.bloco-empresa-membros { margin: 0.6rem 0 0; padding-left: 1.1rem; font-size: 0.85rem; }
+.bloco-empresa-membros .vazio { color: #999; list-style: none; margin-left: -1.1rem; }
