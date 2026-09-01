@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClassCard — Verificação</title>
+  <link rel="stylesheet" href="web/estilos.css" />
+</head>
+<body class="tema-cartao">
+  <header>
+    <strong>ClassCard</strong>
+    <a href="index.html">Meu cartão</a>
+  </header>
+
+  <main>
+    <div id="carregando" class="painel-verificacao">
+      <p class="msg">Verificando…</p>
+    </div>
+
+    <div id="resultado" class="painel-verificacao" hidden>
+      <div class="verificacao-selo" id="v-selo">
+        <div class="verificacao-icone" id="v-icone">✓</div>
+        <div class="verificacao-titulo" id="v-titulo">Identidade verificada</div>
+        <div class="verificacao-subtitulo" id="v-subtitulo">
+          Reconhecida pelo órgão Prepara Portugal
+        </div>
+      </div>
+
+      <div class="verificacao-detalhes" id="v-detalhes">
+        <div class="cartao-campo">
+          <div class="rotulo">Nome</div>
+          <div class="valor" id="v-nome">—</div>
+        </div>
+        <div class="cartao-campo">
+          <div class="rotulo">Cédula</div>
+          <div class="valor cedula-inline" id="v-cedula">—</div>
+        </div>
+        <div class="cartao-campo" id="v-linha-papel">
+          <div class="rotulo" id="v-rotulo-papel">Papel</div>
+          <div class="valor" id="v-papel">—</div>
+        </div>
+        <div class="cartao-campo" id="v-linha-empresa">
+          <div class="rotulo">Empresa</div>
+          <div class="valor" id="v-empresa">—</div>
+        </div>
+        <div class="cartao-campo">
+          <div class="rotulo">Estado</div>
+          <div class="valor"><span class="estado-badge" id="v-estado">—</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="nao-encontrado" class="painel-verificacao" hidden>
+      <div class="verificacao-selo verificacao-selo-erro">
+        <div class="verificacao-icone">✕</div>
+        <div class="verificacao-titulo">Cédula não reconhecida</div>
+        <div class="verificacao-subtitulo">
+          Não existe identidade correspondente no Prepara Portugal.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://projetoempresaficticia.github.io/pp-base/web/comum.js"></script>
+  <script src="verificar.js"></script>
+</body>
+</html>

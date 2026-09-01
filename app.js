@@ -53,11 +53,14 @@ async function carregarCartao() {
   badge.textContent = pessoa.estado;
   badge.className = 'estado-badge estado-' + pessoa.estado;
 
+  const urlVerificacao =
+    'https://projetoempresaficticia.github.io/classcard/verificar.html?cedula=' +
+    encodeURIComponent(pessoa.cedula);
   document.getElementById('c-qr').innerHTML = '';
   new QRCode(document.getElementById('c-qr'), {
-    text: pessoa.cedula,
-    width: 72,
-    height: 72,
+    text: urlVerificacao,
+    width: 92,
+    height: 92,
     colorDark: '#1A1C31',
     colorLight: '#FFFFFF',
   });
