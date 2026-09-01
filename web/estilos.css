@@ -195,6 +195,16 @@ input, select {
   font-size: 0.95rem;
 }
 
+.campo-com-botao { display: flex; gap: 0.5rem; }
+.campo-com-botao input { flex: 1; }
+.campo-com-botao button {
+  margin-top: 0;
+  white-space: nowrap;
+  background: var(--id-cinza);
+  color: var(--id-azul-escuro);
+}
+.campo-com-botao button:hover { background: var(--id-azul-claro); }
+
 button {
   margin-top: 1rem;
   background: var(--id-azul);

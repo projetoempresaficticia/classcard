@@ -33,6 +33,11 @@ Site: https://projetoempresaficticia.github.io/classcard/
   script usado para criar o primeiro professor diretamente em
   `auth.users`/`auth.identities`, workaround não-oficial já que o Supabase
   não expõe a API de admin por SQL puro.
+- `sql/0005_registro_cria_auth.sql` — `id_registar_pessoa` passou a criar o
+  próprio login no Supabase Auth (nome + email + senha), em vez de exigir
+  que o admin crie o utilizador no Dashboard e cole o UID. Mesmo workaround
+  do bootstrap do professor, agora reutilizável por qualquer registo.
+  Assinatura mudou: `p_auth_uid` saiu, entrou `p_senha`.
 - `index.html` + `app.js` — login e carteirinha visual da própria pessoa.
 - `admin.html` + `admin.js` — painel do professor/admin: registar pessoa,
   registar empresa, vincular pessoa↔empresa, buscar por cédula.
@@ -49,10 +54,10 @@ diretamente em `auth.users`/`auth.identities` (ver
 `PP-2026-00002`, papel `professor`. Testado de ponta a ponta com login real
 no admin publicado e na carteirinha.
 
-Para as próximas pessoas, o professor usa o painel admin normalmente — mas o
-login do Supabase Auth de cada uma ainda precisa ser criado antes no
-Dashboard → Authentication → Add user (as RPCs não criam logins, só ligam a
-ficha a um login já existente pelo seu UID).
+Para as próximas pessoas, o professor usa o painel admin normalmente — desde
+`sql/0005_registro_cria_auth.sql` o próprio formulário (nome, email, senha)
+cria o login e a ficha numa única ação, sem precisar do Dashboard nem de
+UID.
 
 ## Testes
 

@@ -122,17 +122,33 @@ formLogin.addEventListener('submit', async (ev) => {
   await verificarSessao();
 });
 
+document.getElementById('p-gerar-senha').addEventListener('click', () => {
+  const alfabeto = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789';
+  let senha = '';
+  for (let i = 0; i < 10; i++) senha += alfabeto[Math.floor(Math.random() * alfabeto.length)];
+  document.getElementById('p-senha').value = senha;
+});
+
 document.getElementById('form-pessoa').addEventListener('submit', async (ev) => {
   ev.preventDefault();
+  const emailLogin = document.getElementById('p-email-login').value;
+  const senha = document.getElementById('p-senha').value;
   const r = await api('id_registar_pessoa', {
-    p_auth_uid: document.getElementById('p-uid').value,
     p_nome: document.getElementById('p-nome').value,
-    p_email_login: document.getElementById('p-email-login').value,
+    p_email_login: emailLogin,
+    p_senha: senha,
     p_email_interno: document.getElementById('p-email-interno').value || null,
     p_papel: document.getElementById('p-papel').value,
   });
-  mostrar(document.getElementById('msg-pessoa'), r);
-  if (r.ok) carregarAlunos();
+  const msg = document.getElementById('msg-pessoa');
+  if (r.ok) {
+    msg.textContent = `Registado: ${r.dados.cedula}. Login: ${emailLogin} / senha: ${senha} (anote — não fica visível de novo).`;
+    msg.className = 'msg sucesso';
+    ev.target.reset();
+    carregarAlunos();
+  } else {
+    mostrar(msg, r);
+  }
 });
 
 document.getElementById('form-empresa').addEventListener('submit', async (ev) => {

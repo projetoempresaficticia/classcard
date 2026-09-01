@@ -28,16 +28,15 @@
     <div id="area-admin" hidden>
       <form id="form-pessoa">
         <h2>Registar pessoa</h2>
-        <p style="font-size:0.85rem;color:#555">
-          O login (Supabase Auth) tem de ser criado antes, no Dashboard do
-          Supabase → Authentication → Add user. Cole aqui o UID gerado.
-        </p>
-        <label>UID do login (Supabase Auth)</label>
-        <input id="p-uid" required placeholder="00000000-0000-0000-0000-000000000000" />
         <label>Nome</label>
         <input id="p-nome" required />
         <label>Email de login</label>
         <input id="p-email-login" type="email" required />
+        <label>Senha inicial</label>
+        <div class="campo-com-botao">
+          <input id="p-senha" required minlength="6" placeholder="mínimo 6 caracteres" />
+          <button type="button" id="p-gerar-senha">Gerar</button>
+        </div>
         <label>Email interno (Correio)</label>
         <input id="p-email-interno" type="email" />
         <label>Papel</label>
