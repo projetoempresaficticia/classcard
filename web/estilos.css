@@ -138,12 +138,34 @@ body:not(.tema-cartao) main { max-width: 720px; }
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
   font-weight: 700;
   font-size: 1.15rem;
   flex-shrink: 0;
   border: 2px solid var(--id-azul-forte);
   box-shadow: 0 4px 10px rgba(14, 77, 150, 0.35);
 }
+.cartao-avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cartao-avatar .cartao-avatar-dica {
+  position: absolute;
+  inset: auto 0 0 0;
+  background: rgba(10, 12, 30, 0.55);
+  color: #fff;
+  font-size: 0.5rem;
+  text-align: center;
+  padding: 0.1rem 0;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.cartao-avatar:hover .cartao-avatar-dica { opacity: 1; }
 
 .cartao-info { min-width: 0; flex: 1; }
 .cartao .nome {
@@ -354,6 +376,16 @@ th { background: var(--id-azul-medio); color: #fff; }
 }
 .aba:hover { background: var(--id-azul-claro); }
 .aba.aba-ativa { background: var(--id-azul); color: #fff; }
+
+.abas-principais {
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #d7dbe3;
+}
+.abas-principais .aba { font-size: 0.9rem; padding: 0.55rem 1.1rem; }
+
+.secao-admin form { margin-bottom: 0; }
 
 .cedula-inline {
   font-family: "SFMono-Regular", Consolas, monospace;

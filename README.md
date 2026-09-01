@@ -38,9 +38,20 @@ Site: https://projetoempresaficticia.github.io/classcard/
   que o admin crie o utilizador no Dashboard e cole o UID. Mesmo workaround
   do bootstrap do professor, agora reutilizável por qualquer registo.
   Assinatura mudou: `p_auth_uid` saiu, entrou `p_senha`.
-- `index.html` + `app.js` — login e carteirinha visual da própria pessoa.
-- `admin.html` + `admin.js` — painel do professor/admin: registar pessoa,
-  registar empresa, vincular pessoa↔empresa, buscar por cédula.
+- `sql/0006_foto_perfil.sql` — bucket público `avatares` no Storage (cada
+  pessoa só grava na própria pasta `{uid}/...`), coluna `pessoas.foto_url`,
+  e a RPC `id_atualizar_foto` (só atualiza a própria foto).
+- `verificar.html` + `verificar.js` — página pública de verificação
+  (sem login) aberta pelo QR do cartão: mostra um selo "reconhecida pelo
+  Prepara Portugal" (verde/ativa, âmbar/suspensa, vermelho/falida ou não
+  encontrada) com os dados públicos de `id_resolver`.
+- `index.html` + `app.js` — login, carteirinha visual da própria pessoa
+  (com upload de foto de perfil, clicando no avatar) e QR que abre
+  `verificar.html`.
+- `admin.html` + `admin.js` — painel do professor/admin organizado em abas
+  (Registar pessoa, Registar empresa, Vincular, Buscar, Diretório) em vez
+  de uma página longa de rolar — cada seção só aparece quando a aba é
+  clicada.
 - `web/estilos.css` — paleta oficial Prepara Portugal (azul), distinta da
   paleta do Banco em `pp-base`, conforme fixado no `SKILL.md` §7.
 

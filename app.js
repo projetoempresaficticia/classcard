@@ -17,7 +17,7 @@ async function carregarCartao() {
   const uid = sessao.session.user.id;
   const { data: pessoa, error } = await sb
     .from('pessoas')
-    .select('cedula, nome, papel, estado, empresa_id')
+    .select('cedula, nome, papel, estado, empresa_id, foto_url')
     .eq('id', uid)
     .single();
 
@@ -47,7 +47,12 @@ async function carregarCartao() {
     .slice(0, 2)
     .map((p) => p[0].toUpperCase())
     .join('');
-  document.getElementById('c-avatar').textContent = iniciais || '?';
+  const conteudoAvatar = document.getElementById('c-avatar-conteudo');
+  if (pessoa.foto_url) {
+    conteudoAvatar.innerHTML = `<img src="${pessoa.foto_url}" alt="Foto de ${pessoa.nome}" />`;
+  } else {
+    conteudoAvatar.textContent = iniciais || '?';
+  }
 
   const badge = document.getElementById('c-estado');
   badge.textContent = pessoa.estado;
@@ -86,6 +91,42 @@ document.getElementById('btn-sair').addEventListener('click', async () => {
   await sb.auth.signOut();
   areaCartao.hidden = true;
   areaLogin.hidden = false;
+});
+
+document.getElementById('c-foto-input').addEventListener('change', async (ev) => {
+  const arquivo = ev.target.files[0];
+  if (!arquivo) return;
+  if (!arquivo.type.startsWith('image/')) {
+    alert('Escolha um ficheiro de imagem.');
+    return;
+  }
+  if (arquivo.size > 3 * 1024 * 1024) {
+    alert('Imagem grande demais (máx. 3 MB).');
+    return;
+  }
+
+  const { data: sessao } = await sb.auth.getSession();
+  if (!sessao.session) return;
+  const uid = sessao.session.user.id;
+  const extensao = (arquivo.name.split('.').pop() || 'jpg').toLowerCase();
+  const caminho = `${uid}/foto.${extensao}`;
+
+  const { error: erroUpload } = await sb.storage
+    .from('avatares')
+    .upload(caminho, arquivo, { upsert: true, contentType: arquivo.type });
+  if (erroUpload) {
+    alert('Falha ao enviar a foto: ' + erroUpload.message);
+    return;
+  }
+
+  const { data: urlPublica } = sb.storage.from('avatares').getPublicUrl(caminho);
+  const fotoUrl = urlPublica.publicUrl + '?v=' + Date.now();
+  const r = await api('id_atualizar_foto', { p_foto_url: fotoUrl });
+  if (!r.ok) {
+    alert('Falha ao guardar a foto: ' + r.erro);
+    return;
+  }
+  await carregarCartao();
 });
 
 carregarCartao();

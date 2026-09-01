@@ -38,7 +38,11 @@
         </div>
 
         <div class="cartao-principal">
-          <div class="cartao-avatar" id="c-avatar">—</div>
+          <label class="cartao-avatar" for="c-foto-input">
+            <span id="c-avatar-conteudo">—</span>
+            <span class="cartao-avatar-dica">trocar foto</span>
+          </label>
+          <input type="file" id="c-foto-input" accept="image/*" hidden />
           <div class="cartao-info">
             <div class="nome" id="c-nome">—</div>
             <div class="cedula" id="c-cedula">—</div>
