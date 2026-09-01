@@ -28,38 +28,37 @@
     <div id="area-cartao" hidden>
       <div class="cartao">
         <div class="cartao-topo"></div>
-        <div class="cartao-corpo">
-          <div class="cartao-identidade">
-            <div class="cartao-avatar" id="c-avatar">—</div>
-            <div>
-              <div class="nome" id="c-nome">—</div>
-              <div class="cedula" id="c-cedula">—</div>
+
+        <div class="cartao-cabecalho">
+          <div class="cartao-crista">CC</div>
+          <div class="cartao-titulo">
+            <div class="titulo-principal">CLASSCARD</div>
+            <div class="titulo-secundario">Prepara Portugal · Identidade Estudantil</div>
+          </div>
+        </div>
+
+        <div class="cartao-principal">
+          <div class="cartao-avatar" id="c-avatar">—</div>
+          <div class="cartao-info">
+            <div class="nome" id="c-nome">—</div>
+            <div class="cedula" id="c-cedula">—</div>
+            <div class="cartao-grade">
+              <div class="cartao-campo">
+                <div class="rotulo">Empresa</div>
+                <div class="valor" id="c-empresa">—</div>
+              </div>
+              <div class="cartao-campo">
+                <div class="rotulo">Papel</div>
+                <div class="valor" id="c-papel">—</div>
+              </div>
             </div>
           </div>
-
-          <div class="cartao-divisoria"></div>
-
-          <div class="cartao-grade">
-            <div class="cartao-campo">
-              <div class="rotulo">Empresa</div>
-              <div class="valor" id="c-empresa">—</div>
-            </div>
-            <div class="cartao-campo">
-              <div class="rotulo">Papel</div>
-              <div class="valor" id="c-papel">—</div>
-            </div>
-            <div class="cartao-campo">
-              <div class="rotulo">Estado</div>
-              <div class="valor"><span class="estado-badge" id="c-estado">—</span></div>
-            </div>
-          </div>
-
-          <div class="cartao-divisoria"></div>
         </div>
 
         <div class="cartao-rodape">
           <div id="c-qr" class="qr-caixa"></div>
           <div class="legenda">Escaneie<br />para verificar</div>
+          <span class="estado-badge" id="c-estado">—</span>
         </div>
       </div>
       <button class="botao-pilula" id="btn-sair" type="button">Sair</button>

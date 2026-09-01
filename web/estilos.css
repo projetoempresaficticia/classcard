@@ -46,108 +46,169 @@ main {
 }
 body:not(.tema-cartao) main { max-width: 720px; }
 
-/* ---- Carteirinha ---- */
+/* ---- Carteirinha: cartão físico, à la crachá/passaporte ---- */
 
 .cartao {
-  background: #fff;
+  position: relative;
+  background: linear-gradient(160deg, #ffffff 0%, #f3f8fc 55%, #e9f2fb 100%);
   color: var(--id-azul-escuro);
   border-radius: 20px;
-  box-shadow: 0 20px 45px rgba(10, 12, 30, 0.45);
+  border: 1px solid rgba(45, 110, 180, 0.15);
+  box-shadow: 0 24px 50px rgba(10, 12, 30, 0.5);
   overflow: hidden;
 }
 
+/* textura de segurança sutil, como um papel-moeda/documento oficial */
+.cartao::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(45, 110, 180, 0.08) 1px, transparent 1px);
+  background-size: 13px 13px;
+  pointer-events: none;
+}
+
+/* mancha "holográfica" decorativa, como num documento de identidade real */
+.cartao::after {
+  content: "";
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(128, 186, 219, 0.55), rgba(45, 110, 180, 0.15) 60%, transparent 75%);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
 .cartao-topo {
-  height: 6px;
+  position: relative;
+  height: 5px;
   background: linear-gradient(90deg, var(--id-azul-forte), var(--id-azul), var(--id-azul-claro));
 }
 
-.cartao-corpo { padding: 1.5rem 1.5rem 1rem; }
-
-.cartao-avatar {
-  width: 56px;
-  height: 56px;
+.cartao-cabecalho {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.1rem 0;
+}
+.cartao-crista {
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--id-azul-forte), var(--id-azul));
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 1.1rem;
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
   flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(14, 77, 150, 0.4);
+}
+.cartao-titulo .titulo-principal {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--id-azul-forte);
+}
+.cartao-titulo .titulo-secundario {
+  font-size: 0.62rem;
+  color: #6b7280;
+  letter-spacing: 0.02em;
 }
 
-.cartao-identidade {
+.cartao-principal {
+  position: relative;
+  display: flex;
+  gap: 0.9rem;
+  padding: 0.85rem 1.1rem;
+}
+
+.cartao-avatar {
+  width: 62px;
+  height: 72px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--id-azul-forte), var(--id-azul));
+  color: #fff;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  border: 2px solid var(--id-azul-forte);
+  box-shadow: 0 4px 10px rgba(14, 77, 150, 0.35);
 }
 
-.cartao .nome { font-size: 1.05rem; font-weight: 600; }
+.cartao-info { min-width: 0; flex: 1; }
+.cartao .nome {
+  font-size: 1rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .cartao .cedula {
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   letter-spacing: 0.06em;
   color: var(--id-azul-forte);
-  margin-top: 0.15rem;
+  margin-top: 0.1rem;
 }
-
-/* divisória tipo "ticket", com entalhes nas bordas */
-.cartao-divisoria {
-  position: relative;
-  border-top: 2px dashed var(--id-cinza);
-  margin: 1.1rem 0;
-}
-.cartao-divisoria::before,
-.cartao-divisoria::after {
-  content: "";
-  position: absolute;
-  top: -11px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--id-azul-escuro);
-}
-body:not(.tema-cartao) .cartao-divisoria::before,
-body:not(.tema-cartao) .cartao-divisoria::after {
-  background: var(--id-cinza);
-}
-.cartao-divisoria::before { left: -31px; }
-.cartao-divisoria::after { right: -31px; }
 
 .cartao-grade {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.9rem;
+  gap: 0.6rem;
+  margin-top: 0.7rem;
 }
 .cartao-campo .rotulo {
-  font-size: 0.7rem;
+  font-size: 0.62rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #8a8fa3;
 }
-.cartao-campo .valor { font-size: 0.9rem; margin-top: 0.15rem; }
+.cartao-campo .valor {
+  font-size: 0.82rem;
+  margin-top: 0.1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .cartao-rodape {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 0 1.5rem 1.5rem;
+  gap: 0.7rem;
+  margin: 0.2rem 1.1rem 1rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(45, 110, 180, 0.08), rgba(128, 186, 219, 0.08));
+  border: 1px solid rgba(45, 110, 180, 0.12);
 }
 .cartao-rodape .qr-caixa {
-  width: 72px;
-  height: 72px;
-  border-radius: 8px;
+  width: 46px;
+  height: 46px;
+  border-radius: 6px;
   overflow: hidden;
   flex-shrink: 0;
+  border: 2px solid var(--id-azul-forte);
 }
 .cartao-rodape .qr-caixa img { display: block; }
 .cartao-rodape .legenda {
-  font-size: 0.7rem;
-  color: #8a8fa3;
+  font-size: 0.6rem;
+  color: #6b7280;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  line-height: 1.3;
 }
+.cartao-rodape .estado-badge { margin-left: auto; }
 
 .botao-pilula {
   display: block;
