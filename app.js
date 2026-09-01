@@ -64,8 +64,8 @@ async function carregarCartao() {
   document.getElementById('c-qr').innerHTML = '';
   new QRCode(document.getElementById('c-qr'), {
     text: urlVerificacao,
-    width: 92,
-    height: 92,
+    width: 176,
+    height: 176,
     colorDark: '#1A1C31',
     colorLight: '#FFFFFF',
   });
