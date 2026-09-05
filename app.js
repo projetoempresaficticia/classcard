@@ -2,6 +2,14 @@
 
 const areaLogin = document.getElementById('area-login');
 const areaCartao = document.getElementById('area-cartao');
+
+// A entrada tem de caber num ecrã sem rolar; a carteirinha, que é mais
+// alta, não tem essa restrição. A classe no <body> diz ao CSS em qual
+// dos dois casos estamos. Vem já no HTML para não haver um flash com o
+// desenho grande antes de a sessão ser verificada.
+function modoEntrada(ligado) {
+  document.body.classList.toggle('modo-entrada', ligado);
+}
 const formLogin = document.getElementById('form-login');
 const msgLogin = document.getElementById('msg-login');
 
@@ -73,6 +81,7 @@ async function carregarCartao() {
 
   areaLogin.hidden = true;
   areaCartao.hidden = false;
+  modoEntrada(false);
 }
 
 formLogin.addEventListener('submit', async (ev) => {
@@ -92,6 +101,7 @@ document.getElementById('btn-sair').addEventListener('click', async () => {
   await sb.auth.signOut();
   areaCartao.hidden = true;
   areaLogin.hidden = false;
+  modoEntrada(true);
 });
 
 document.getElementById('c-foto-input').addEventListener('change', async (ev) => {

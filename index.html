@@ -2,13 +2,25 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
+  <meta name="pc-versao" content="3af12e18181c" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ClassCard</title>
-  <link rel="stylesheet" href="web/estilos.css" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta name="theme-color" content="#005ED7" />
+  <link rel="stylesheet" href="web/estilos.css?v=1dcd353c" />
+  <script src="web/atualizar.js?v=83b69445"></script>
 </head>
-<body class="tema-cartao">
+<!-- `modo-entrada` vem já daqui: posta só por JS haveria um flash com
+     o desenho grande antes de a sessão ser verificada. O app.js tira-a
+     quando a carteirinha aparece. -->
+<body class="tema-cartao modo-entrada">
   <header>
-    <strong>ClassCard</strong>
+    <div class="cabecalho-marca">
+      <img class="marca-icone" src="web/marca/classcard-512.png" alt="" width="38" height="38" />
+      <strong>ClassCard</strong>
+    </div>
     <a href="admin.html">Admin</a>
   </header>
 
@@ -74,6 +86,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <script src="https://projetoempresaficticia.github.io/pp-base/web/comum.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=91e0a22a"></script>
 </body>
 </html>

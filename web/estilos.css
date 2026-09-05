@@ -1,16 +1,56 @@
 /* pp-identidade — paleta oficial Prepara Portugal (distinta da do Banco),
    conforme fixado no SKILL.md, §7. Tons de azul = confiança/estabilidade. */
 
+/* ═══════════════════════════════════════════════════════════════════
+   CLASSCARD (pp-identidade) — a Carteirinha do Prepara Portugal.
+
+   Identidade azul, adotada em 2026-09-05 a partir do ícone e do fundo
+   que o Germano forneceu.
+
+   AQUI A REGRA É AO CONTRÁRIO das outras duas apps, e vale a pena
+   perceber porquê:
+
+     No Prepacoin o lima tem 1,10:1 sobre branco e no Subsight o laranja
+     tem 2,53:1 — em ambos a cor da marca é clara demais para escrever,
+     e serve só de preenchimento.
+
+     O azul #005ED7 é escuro. Dá 5,86:1 nos DOIS sentidos: branco por
+     cima dele, e ele por cima de branco. Uma cor só faz os dois
+     trabalhos, e não é preciso um segundo tom para texto.
+
+   Contraste, medido em WCAG 2.1, tudo sobre branco:
+     #101828 tinta .......... 17,75:1
+     #032268 azul-marinho ... 14,66:1
+     #0047BC azul forte ...... 7,99:1
+     #475467 secundário ...... 7,69:1
+     #005ED7 azul da marca ... 5,86:1
+
+   O azul claro #60BFFE dá 2,02:1 sobre branco e NÃO serve para texto
+   aí; sobre o azul-marinho dá 7,25:1 e é lá que se usa. (O
+   #80BADB que aqui estava era usado em links de cabeçalho e tinha o
+   mesmo problema, 2,11:1.)
+   ═══════════════════════════════════════════════════════════════════ */
+
 :root {
-  --id-azul-escuro: #1A1C31;
-  --id-azul: #2D6EB4;
-  --id-azul-medio: #243261;
-  --id-azul-claro: #80BADB;
-  --id-azul-forte: #0E4D96;
+  --id-azul: #005ED7;          /* a marca */
+  --id-azul-forte: #0047BC;    /* hover e ênfase */
+  --id-azul-escuro: #032268;   /* o marinho do fundo */
+  --id-azul-medio: #0A3A8F;
+  --id-azul-claro: #60BFFE;    /* SÓ sobre escuro */
+  --id-tinta: #101828;
+  --id-secundario: #475467;
   --id-cinza: #EDEDED;
+  --id-linha: #D0D5DD;
 }
 
 * { box-sizing: border-box; }
+
+/* Rede de segurança para o `hidden`. Qualquer regra de autor com
+   `display` vence o comportamento nativo do atributo: foi assim que o
+   `#area-login { display: grid }` desta folha deixou o formulário de
+   login visível ao lado da carteirinha depois de entrar. Já tinha
+   acontecido no subsight com `header nav { display:flex }`. */
+[hidden] { display: none !important; }
 
 body {
   margin: 0;
@@ -20,14 +60,35 @@ body {
   min-height: 100vh;
 }
 
-/* Página do cartão: fundo azul-marinho cheio, como a referência de "digital
-   passport" — o cartão claro flutua por cima. */
+/* Página do cartão: a arte que o Germano forneceu, com a rede de pessoas
+   e empresas — que é literalmente o que a Carteirinha liga. O cartão
+   claro flutua por cima, como um crachá sobre um fundo institucional.
+
+   1177 KB em PNG passam a 39 KB em WebP. Ver ferramentas/gerar_marca.py. */
 body.tema-cartao {
-  background: radial-gradient(circle at 30% 0%, #232750 0%, var(--id-azul-escuro) 55%);
+  background-color: var(--id-azul-escuro);
+  background-image: image-set(
+    url("marca/fundo-entrada.webp") type("image/webp"),
+    url("marca/fundo-entrada.jpg") type("image/jpeg"));
+  background-image: -webkit-image-set(
+    url("marca/fundo-entrada.webp") type("image/webp"),
+    url("marca/fundo-entrada.jpg") type("image/jpeg"));
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: #fff;
+}
+@media (max-width: 720px) {
+  /* num ecrã estreito a imagem larga seria reduzida ao ponto de as
+     decorações das pontas desaparecerem; esta traz só a faixa central */
+  body.tema-cartao {
+    background-image: url("marca/fundo-entrada-movel.webp");
+    background-attachment: scroll;
+  }
 }
 
 header {
+  position: relative;
   background: transparent;
   color: #fff;
   padding: 1.25rem 1.5rem;
@@ -35,9 +96,33 @@ header {
   justify-content: space-between;
   align-items: center;
 }
+/* Um véu escuro no topo. A arte tem nós e círculos claros logo no
+   cabeçalho, e tanto a marca como o link "Admin" assentavam por cima
+   deles — o canto superior direito do gradiente dá 2,02:1 com branco. */
+body.tema-cartao header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(3, 34, 104, .72) 0%,
+    rgba(3, 34, 104, .38) 60%,
+    rgba(3, 34, 104, 0) 100%);
+  pointer-events: none;
+}
+header > * { position: relative; }
 body:not(.tema-cartao) header { background: var(--id-azul-escuro); }
 
-header a { color: var(--id-azul-claro); text-decoration: none; }
+/* A marca é a rede à volta de uma pessoa, que é literalmente o que a
+   Carteirinha faz: liga cada pessoa às empresas e aos órgãos. Vive por
+   si, sem chip nem moldura — o disco azul já vem no ficheiro. */
+.cabecalho-marca { display: flex; align-items: center; gap: 0.6rem; }
+.marca-icone { width: 38px; height: 38px; display: block; flex-shrink: 0; }
+.cabecalho-marca strong { font-size: 1.15rem; letter-spacing: -0.01em; }
+
+/* branco, e não o azul claro: sobre a arte o tom claro chega a assentar
+   em zonas claras do gradiente, onde dá 2,02:1 */
+header a { color: #fff; text-decoration: none; opacity: .88; }
+header a:hover { opacity: 1; text-decoration: underline; }
 
 main {
   max-width: 480px;
@@ -312,23 +397,51 @@ body:not(.tema-cartao) main { max-width: 720px; }
 .estado-suspensa { background: #fde3cf; color: #a5480a; }
 .estado-falida { background: #f7d3d3; color: #9c1c1c; }
 
+/* A cor tem de ser reposta aqui. O `body.tema-cartao` define
+   `color: #fff` para o texto assentar sobre o fundo azul, e isso
+   cascateava para DENTRO do formulário branco: os rótulos ficavam
+   brancos sobre branco, 1:1, invisíveis. O bug já cá estava antes desta
+   arte, com o fundo azul-marinho anterior. */
 form {
   background: #fff;
+  color: var(--id-tinta);
   border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 2px 8px rgba(26, 28, 49, 0.08);
+  box-shadow: 0 2px 8px rgba(16, 24, 40, 0.08);
 }
+form label { color: var(--id-secundario); }
+
+/* Sobre a arte, o formulário é um cartão branco com sombra funda, como
+   um crachá pousado. Branco e não vidro: isto é uma app de identidade, e
+   um documento lê-se sobre papel. Também é o que dá mais contraste, e o
+   gradiente por baixo varia de 14,66:1 a 2,02:1 conforme a zona — um
+   cartão translúcido dependia de onde calhasse. */
+body.tema-cartao #area-login form {
+  border-radius: 18px;
+  padding: clamp(20px, 4svh, 32px);
+  box-shadow: 0 24px 50px rgba(3, 34, 104, .45);
+  border: 1px solid rgba(255, 255, 255, .55);
+}
+body.tema-cartao #area-login { display: grid; place-items: center; }
 
 form h2 { margin-top: 0; color: var(--id-azul-forte); font-size: 1.05rem; }
 
 label { display: block; font-size: 0.85rem; margin: 0.6rem 0 0.2rem; }
 input, select {
   width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--id-linha);
+  border-radius: 8px;
   font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--id-tinta);
+  background: #fff;
+}
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--id-azul);
+  box-shadow: 0 0 0 3px rgba(0, 94, 215, .18);
 }
 
 .campo-com-botao { display: flex; gap: 0.5rem; }
@@ -343,6 +456,7 @@ input, select {
 
 button {
   margin-top: 1rem;
+  /* branco sobre este azul dá 5,86:1 */
   background: var(--id-azul);
   color: #fff;
   border: none;
@@ -350,6 +464,12 @@ button {
   border-radius: 8px;
   cursor: pointer;
   font-size: 0.95rem;
+  font-family: inherit;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
 }
 button:hover { background: var(--id-azul-forte); }
 
@@ -407,3 +527,48 @@ th { background: var(--id-azul-medio); color: #fff; }
 .bloco-empresa-meta { font-size: 0.8rem; color: #777; margin-top: 0.2rem; }
 .bloco-empresa-membros { margin: 0.6rem 0 0; padding-left: 1.1rem; font-size: 0.85rem; }
 .bloco-empresa-membros .vazio { color: #999; list-style: none; margin-left: -1.1rem; }
+
+/* ═══ A ENTRADA CABE NO ECRÃ ════════════════════════════════════════
+   Os espaçamentos acompanham a ALTURA da janela, com `svh` (que já
+   desconta as barras do browser) e `clamp()` a travar os extremos.
+   Números fixos rebentam noutro ecrã: um portátil comum a 100% de zoom
+   deixa ~600px úteis, e foi por isso que a entrada do Cartório e a do
+   Subsight obrigavam a rolar.
+
+   Só quando o ecrã de entrada está visível (`body.modo-entrada`), e só
+   acima de 560px de altura: abaixo disso apertar mais cortava o
+   formulário, e aí vale mais deixar rolar.
+   ═══════════════════════════════════════════════════════════════════ */
+@media (min-height: 560px) {
+  body.modo-entrada {
+    height: 100svh;
+    max-height: 100svh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  body.modo-entrada header { flex: 0 0 auto; padding-block: clamp(8px, 1.6svh, 20px); }
+  body.modo-entrada .marca-icone {
+    width: clamp(28px, 5svh, 38px);
+    height: clamp(28px, 5svh, 38px);
+  }
+  body.modo-entrada .cabecalho-marca strong { font-size: clamp(15px, 2.4svh, 19px); }
+
+  body.modo-entrada main {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: grid;
+    place-items: center;
+    margin-block: 0;
+    padding-block: clamp(8px, 2svh, 24px);
+  }
+  body.modo-entrada #area-login { width: 100%; }
+  body.modo-entrada #area-login form { margin-bottom: 0; }
+  body.modo-entrada form h2 {
+    font-size: clamp(15px, 2.6svh, 18px);
+    margin-bottom: clamp(8px, 1.6svh, 14px);
+  }
+  body.modo-entrada label { margin: clamp(8px, 1.8svh, 14px) 0 clamp(2px, 0.6svh, 5px); }
+  body.modo-entrada input { padding-block: clamp(7px, 1.5svh, 11px); }
+  body.modo-entrada button { margin-top: clamp(12px, 2.6svh, 20px); }
+}

@@ -12,6 +12,62 @@ Documentação completa (PRDs e decisões) em
 
 Site: https://projetoempresaficticia.github.io/classcard/
 
+## Identidade visual
+
+**Adotada em 2026-09-05**, a partir do ícone e do fundo que o Germano
+forneceu. A marca é a rede à volta de uma pessoa, que é literalmente o
+que a Carteirinha faz: liga cada pessoa às empresas e aos órgãos.
+
+- Azul da marca `#005ED7` · Azul forte `#0047BC` · Azul-marinho `#032268`
+  · Tinta `#101828` · Secundário `#475467`
+- A arte está em `web/marca/`; `python ferramentas/gerar_marca.py`
+  regenera tudo a partir dos originais.
+
+### Aqui a regra é ao contrário das outras apps
+
+No Prepacoin o lima tem 1,10:1 sobre branco, e no Subsight o laranja tem
+2,53:1: em ambos a cor da marca é clara demais para escrever, e serve só
+de preenchimento com tinta por cima.
+
+**O azul é escuro, e dá 5,86:1 nos dois sentidos** — branco por cima
+dele, e ele por cima de branco. Uma cor só faz os dois trabalhos, e não
+é preciso um segundo tom para texto. É a app mais fácil das três neste
+ponto.
+
+A exceção é o azul claro `#60BFFE`: 2,02:1 sobre branco, mas 7,25:1
+sobre o azul-marinho. Só se usa sobre escuro. (O `#80BADB` que aqui
+estava tinha o mesmo problema, 2,11:1, e era usado em links de
+cabeçalho.)
+
+### Dois bugs que a arte destapou
+
+**Os rótulos dos campos eram brancos sobre branco.** O `body.tema-cartao`
+define `color: #fff` para o texto assentar no fundo azul, e isso
+cascateava para dentro do formulário branco: 1:1, invisíveis. O bug já cá
+estava com o fundo azul-marinho anterior; só se viu agora porque fui
+olhar de perto.
+
+**O formulário de login ficava visível ao lado da carteirinha depois de
+entrar.** Uma regra minha com `display: grid` no `#area-login` venceu o
+comportamento nativo do atributo `hidden`. Esta folha não tinha a rede de
+segurança `[hidden] { display: none !important }` — e é a terceira vez
+que este mesmo bug aparece no ecossistema (antes no subsight, com
+`header nav { display:flex }`). Agora tem.
+
+### Peso e altura
+
+O fundo passou de **1177 KB em PNG para 39 KB em WebP**, com JPEG de
+70 KB como reserva e uma faixa central de 6 KB para telemóvel.
+
+Os espaçamentos da entrada acompanham a **altura da janela**, com `svh`
+(que já desconta as barras do browser) e `clamp()` a travar os extremos,
+para não ser preciso rolar num portátil comum. Há um piso de 560px:
+abaixo disso apertar mais cortava o formulário.
+
+`python ferramentas/versoes.py` carimba os `?v=` e o `versao.json`; o
+`web/atualizar.js` recarrega quem tiver uma versão velha em cache, porque
+o GitHub Pages manda `Cache-Control: max-age=600` no HTML.
+
 ## O que este repositório fornece
 
 - `sql/0001_rpc_registo.sql` — RPCs `id_registar_pessoa`, `id_registar_empresa`,
