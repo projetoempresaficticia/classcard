@@ -57,7 +57,9 @@ que este mesmo bug aparece no ecossistema (antes no subsight, com
 ### Peso e altura
 
 O fundo passou de **1177 KB em PNG para 39 KB em WebP**, com JPEG de
-70 KB como reserva e uma faixa central de 6 KB para telemóvel.
+70 KB como reserva e uma faixa central de 6 KB para telemóvel. A marca do
+cabeçalho aparece a 38px, por isso é servida a 128px em WebP (8 KB) e não
+aos 512 do ficheiro de partilha, que eram 227 KB para desenhar 38.
 
 Os espaçamentos da entrada acompanham a **altura da janela**, com `svh`
 (que já desconta as barras do browser) e `clamp()` a travar os extremos,

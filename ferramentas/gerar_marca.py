@@ -49,6 +49,19 @@ def main():
     def redim(lado):
         return marca.resize((lado, lado), Image.LANCZOS)
 
+    # A marca aparece no cabeçalho a 38px. Guardar 512 eram 227 KB para
+    # desenhar 38 — 128px chega para ecrãs de densidade tripla, e sai em
+    # WebP com PNG de reserva.
+    for lado, nome in ((128, 'classcard-marca'),):
+        m = redim(lado)
+        alvo = destino / f'{nome}.webp'
+        m.save(alvo, 'WEBP', quality=92, method=6)
+        print(f'escrito web/marca/{nome}.webp  {alvo.stat().st_size/1024:.0f} KB')
+        reserva = destino / f'{nome}.png'
+        m.save(reserva, optimize=True)
+        print(f'escrito web/marca/{nome}.png   {reserva.stat().st_size/1024:.0f} KB')
+
+    # a de 512 fica para partilha e para quem precise de a ampliar
     redim(512).save(destino / 'classcard-512.png', optimize=True)
     print('escrito web/marca/classcard-512.png')
 

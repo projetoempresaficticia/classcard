@@ -116,7 +116,8 @@ body:not(.tema-cartao) header { background: var(--id-azul-escuro); }
    Carteirinha faz: liga cada pessoa às empresas e aos órgãos. Vive por
    si, sem chip nem moldura — o disco azul já vem no ficheiro. */
 .cabecalho-marca { display: flex; align-items: center; gap: 0.6rem; }
-.marca-icone { width: 38px; height: 38px; display: block; flex-shrink: 0; }
+.cabecalho-marca picture { display: block; flex-shrink: 0; }
+.marca-icone { width: 38px; height: 38px; display: block; }
 .cabecalho-marca strong { font-size: 1.15rem; letter-spacing: -0.01em; }
 
 /* branco, e não o azul claro: sobre a arte o tom claro chega a assentar
